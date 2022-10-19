@@ -1,0 +1,26 @@
+@mixin font-size() {
+    @for $i from 7 through 50 {
+        .fs#{$i} {
+            font-size: #{$i}px;
+        }
+    }
+}
+
+@mixin border($px:1, $line:solid, $color:rgba(0,0,0,.2), $direction:''){
+
+    @if $direction == left {
+        border-left:#{$px}px #{$line} #{$color};
+    }
+    @else if $direction == top {
+        border-top:#{$px}px #{$line} #{$color};
+    }
+    @else if $direction == right {
+        border-right:#{$px}px #{$line} #{$color};
+    }
+    @else if $direction == bottom {
+        border-bottom:#{$px}px #{$line} #{$color};
+    }
+    @else {
+        border:#{$px}px #{$line} #{$color};
+    }
+}

@@ -1,0 +1,27 @@
+@import 'source/variables';
+@import 'source/functions';
+
+    
+.main {
+    width: 100%;
+
+    .sidebar {
+        width: 250px;
+        height: 500px;
+        float:left;
+        @include border();
+    }
+    .page {
+        width: auto;
+        height: 500px;
+        @include border();
+    }
+}
+
+body {
+    font-size:13px;
+    text-decoration: none;
+    background-color: #efefef;
+}
+    
+@include font-size();
