@@ -134,7 +134,7 @@ function watch() {
         [
             options.src + 'lib/styles/**/*.' + options.styleFile,
             options.src + 'lib/js/**/*.js',
-            options.src + 'lib/images/*.{jpg,png}',
+            options.src + 'lib/images/**/*.{jpg,png}',
             options.src + 'src/**/*.html'
         ],
         gulp.series(buildAndReload)
