@@ -39,13 +39,13 @@ async function buildCodes() {
             .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError)) // css çıktı dosyasını sıkıştır
             .pipe(rename({ suffix: '.min' }))
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
+            .pipe(sourcemaps.write('.')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/css')); // gulp.dest() çalıştır - sass çıktı dosyaları
 
         gulp.src(options.src + 'lib/styles/**/*.' + options.styleFile) // gulp.src() çalıştır - sass kaynak dosyaları
             .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(sass.sync().on('error', sass.logError)) // css çıktı dosyası
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
+            .pipe(sourcemaps.write('.')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/css')); // gulp.dest() çalıştır - sass çıktı dosyaları
     /* ======= END CSS ======= */
     /* ======= END CSS ======= */
@@ -62,14 +62,14 @@ async function buildCodes() {
             // .pipe(uglify())
             .pipe(gulpif('!**/*.min.js', uglify({mangle: false})))
             .pipe(rename({ suffix: '.min' }))
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
+            .pipe(sourcemaps.write('.')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/js'));
 
         gulp.src(options.src + 'lib/js/**/*.js')
             .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(jshint())
             .pipe(jshint.reporter('default'))
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
+            .pipe(sourcemaps.write('.')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/js'));
     /* ======= END JS ======= */
     /* ======= END JS ======= */
