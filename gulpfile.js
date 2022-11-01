@@ -38,12 +38,14 @@ async function buildCodes() {
         gulp.src(options.src + 'lib/styles/**/*.' + options.styleFile) // gulp.src() çalıştır - sass kaynak dosyaları
             .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError)) // css çıktı dosyasını sıkıştır
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(rename({ suffix: '.min' }))
+            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/css')); // gulp.dest() çalıştır - sass çıktı dosyaları
 
         gulp.src(options.src + 'lib/styles/**/*.' + options.styleFile) // gulp.src() çalıştır - sass kaynak dosyaları
+            .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(sass.sync().on('error', sass.logError)) // css çıktı dosyası
+            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/css')); // gulp.dest() çalıştır - sass çıktı dosyaları
     /* ======= END CSS ======= */
     /* ======= END CSS ======= */
@@ -59,13 +61,15 @@ async function buildCodes() {
             // .pipe(concat('all.js'))
             // .pipe(uglify())
             .pipe(gulpif('!**/*.min.js', uglify({mangle: false})))
-            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(rename({ suffix: '.min' }))
+            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/js'));
 
         gulp.src(options.src + 'lib/js/**/*.js')
+            .pipe(sourcemaps.init()) // sourcemaps.init() çalıştır
             .pipe(jshint())
             .pipe(jshint.reporter('default'))
+            .pipe(sourcemaps.write('./')) // sourcemaps.write() çalıştır
             .pipe(gulp.dest(options.dest + 'assets/js'));
     /* ======= END JS ======= */
     /* ======= END JS ======= */
@@ -135,7 +139,8 @@ function watch() {
             options.src + 'lib/styles/**/*.' + options.styleFile,
             options.src + 'lib/js/**/*.js',
             options.src + 'lib/images/**/*.{jpg,png}',
-            options.src + 'src/**/*.html'
+            options.src + 'src/**/*.html',
+            options.src + 'lib/vendor/**/*'
         ],
         gulp.series(buildAndReload)
     );
